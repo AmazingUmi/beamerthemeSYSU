@@ -2,6 +2,8 @@
 
 中山大学绿色风格的 **4:3** 中文学术报告模板，包含封面、自动目录、正文、公式、表格、双栏图片和致谢页。使用 XeLaTeX 编译为 PDF。
 
+[查看示例 PDF](examples/SYSU-template.pdf)
+
 ## 使用
 
 安装 TeX Live 或 MacTeX，包含 XeLaTeX、latexmk、beamer、ctex、fontspec、tikz、booktabs，以及 Fandol、TeX Gyre 字体。
@@ -10,10 +12,10 @@
 | --- | --- |
 | 下载 | `git clone https://github.com/AmazingUmi/beamerthemeSYSU.git` |
 | 进入目录 | `cd beamerthemeSYSU` |
-| 编译 | `make` |
-| 清理编译文件与 PDF | `make clean` |
+| 编译并更新示例 PDF | `make` |
+| 清理编译缓存 | `make clean` |
 
-生成文件：`output/pdf/SYSU-template.pdf`。PDF 可直接用于跨平台演示。
+生成文件：`examples/SYSU-template.pdf`。PDF 可直接用于跨平台演示。
 
 ## 文件
 
@@ -24,7 +26,7 @@
 | `assets/` | 校徽、校名和矢量地图 |
 | `Makefile` | 编译与清理命令 |
 | `build/` | 编译中间文件，自动生成 |
-| `output/pdf/` | 生成的 PDF |
+| `examples/SYSU-template.pdf` | 已编译的示例 PDF |
 
 ## 修改
 
