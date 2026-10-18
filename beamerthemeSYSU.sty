@@ -1,0 +1,204 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeSYSU}[2026/10/18 SYSU academic presentation theme]
+
+\RequirePackage{iftex}
+\ifXeTeX\else
+  \PackageError{beamerthemeSYSU}{This theme requires XeLaTeX}
+    {Compile main.tex with xelatex, or use make.}
+  \expandafter\endinput
+\fi
+\RequirePackage[UTF8,fontset=none]{ctex}
+\RequirePackage{tikz}
+\XeTeXgenerateactualtext=1
+
+% TeX Live fonts: no operating-system or Office font dependency.
+\usefonttheme{serif}
+\setmainfont{texgyretermes-regular.otf}[
+  BoldFont=texgyretermes-bold.otf, ItalicFont=texgyretermes-italic.otf,
+  BoldItalicFont=texgyretermes-bolditalic.otf]
+\setsansfont{texgyretermes-regular.otf}[
+  BoldFont=texgyretermes-bold.otf, ItalicFont=texgyretermes-italic.otf,
+  BoldItalicFont=texgyretermes-bolditalic.otf]
+\setCJKmainfont{FandolSong-Regular.otf}[
+  BoldFont=FandolSong-Bold.otf, ItalicFont=FandolKai-Regular.otf]
+\setCJKsansfont{FandolSong-Regular.otf}[
+  BoldFont=FandolSong-Bold.otf, ItalicFont=FandolKai-Regular.otf]
+\setCJKmonofont{FandolFang-Regular.otf}
+\setCJKfamilyfont{sysukai}{FandolKai-Regular.otf}[AutoFakeBold=2]
+\newcommand{\SYSU@headingfont}{\rmfamily\CJKfamily{sysukai}}
+
+% Direct colors in the PPT layouts, rather than the unused Office theme.
+\definecolor{SYSUGreen}{HTML}{005825}
+\definecolor{SYSUAccent}{HTML}{008E3D}
+\definecolor{SYSUMap}{HTML}{F2F2F2}
+\definecolor{SYSUGray}{HTML}{404040}
+\definecolor{SYSURule}{HTML}{A0A0A0}
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{structure}{fg=SYSUGreen}
+\setbeamercolor{alerted text}{fg=SYSUAccent}
+\setbeamercolor{block title}{fg=SYSUGreen,bg=white}
+\setbeamercolor{block body}{fg=black,bg=white}
+\setbeamerfont{normal text}{size=\fontsize{12}{17}}
+\setbeamerfont{itemize/enumerate body}{size=\fontsize{12}{17}}
+\setbeamerfont{itemize/enumerate subbody}{size=\fontsize{11}{16}}
+\setbeamerfont{itemize/enumerate subsubbody}{size=\fontsize{10}{14}}
+\setbeamerfont{section in toc}{family=\SYSU@headingfont,size=\fontsize{12}{17}}
+\AtBeginDocument{\usebeamerfont{normal text}}
+\setbeamersize{text margin left=5.12mm,text margin right=5.12mm}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{\vspace{17.6mm}}
+\setbeamertemplate{frametitle}{}
+\setbeamertemplate{footline}{\vspace{5mm}}
+\setbeamertemplate{itemize item}{\color{SYSUGreen}\(\blacktriangleright\)}
+\setbeamertemplate{itemize subitem}{\color{SYSUGreen}\(\triangleright\)}
+\setbeamertemplate{itemize subsubitem}{\color{SYSUGreen}\(\cdot\)}
+\setbeamertemplate{enumerate item}{\color{SYSUGreen}\insertenumlabel.}
+\addtobeamertemplate{itemize/enumerate body begin}{\setlength{\itemsep}{3mm}}{}
+\addtobeamertemplate{itemize/enumerate subbody begin}{\setlength{\itemsep}{1.5mm}}{}
+\setbeamertemplate{section in toc}{%
+  \leavevmode\hbox to 8mm{%
+    {\color{SYSUGreen}\fontsize{16}{18}\selectfont\inserttocsectionnumber}\hfil}%
+  \inserttocsection\par}
+\hypersetup{colorlinks=true,linkcolor=SYSUGreen,urlcolor=SYSUGreen}
+
+\newcommand{\SYSU@advisor}{}
+\newcommand{\SYSU@email}{}
+\newcommand{\SYSU@closing}{请各位老师、同学批评指正！}
+\pgfkeys{/SYSU/.is family,/SYSU,
+  advisor/.store in=\SYSU@advisor,
+  email/.store in=\SYSU@email,
+  closing/.store in=\SYSU@closing}
+\newcommand{\SYSUsetup}[1]{\pgfkeys{/SYSU,#1}}
+
+\newif\ifSYSU@special
+\newif\ifSYSU@ending
+\newif\ifSYSU@outline
+
+% All coordinates below are fractions of the original 4:3 slide canvas.
+\newcommand{\SYSU@mapbackground}{%
+  \input{assets/world-map.tikz}%
+  \fill[SYSUGreen] (0.00328,0.29974) rectangle (0.09360,0.44664);
+  \node[anchor=north west,inner sep=0pt] at (0.86800,0.02477)
+    {\includegraphics[width=0.10358\paperwidth]{assets/sysu-seal.png}};
+}
+\newcommand{\SYSU@progress}{%
+  \foreach \SYSU@i in {1,...,4}{%
+    \pgfmathsetmacro{\SYSU@x}{0.82902+(\SYSU@i-1)*0.03563}%
+    \ifSYSU@outline
+      \fill[SYSUAccent] (\SYSU@x,0.13508) rectangle ++(0.02555,0.03406);
+    \else
+      \ifnum\SYSU@i=\value{section}
+        \fill[SYSUGreen] (\SYSU@x,0.13508) rectangle ++(0.03405,0.04540);
+        \node[text=white,font=\bfseries\fontsize{7.1}{8}\selectfont,
+          inner sep=0pt] at (\SYSU@x+0.017025,0.15778) {\SYSU@i};
+      \else
+        \fill[SYSUAccent] (\SYSU@x,0.13508) rectangle ++(0.02555,0.03406);
+      \fi
+    \fi
+  }%
+}
+\newcommand{\SYSU@pagenumber}{%
+  \node[anchor=east,text=SYSUGray,inner sep=0pt,
+    font=\rmfamily\fontsize{9.1}{10}\selectfont]
+    at (0.945,0.969) {\insertframenumber};
+}
+\setbeamertemplate{background}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \begin{scope}[shift={(current page.north west)},x=\paperwidth,y=-\paperheight]
+      \ifSYSU@special
+        \SYSU@mapbackground
+        \ifSYSU@ending\SYSU@pagenumber\fi
+      \else
+        \fill[SYSUGreen] (0,0) rectangle (1,0.13055);
+        \node[anchor=north west,inner sep=0pt] at (0.72428,0.01546)
+          {\includegraphics[width=0.26056\paperwidth]{assets/sysu-logo-white.png}};
+        \node[anchor=west,text=white,inner sep=0pt,align=left,
+          text width=0.655\paperwidth,
+          font=\SYSU@headingfont\fontsize{16.2}{18}\selectfont]
+          at (0.04,0.066) {\insertframetitle};
+        \SYSU@progress
+        \SYSU@pagenumber
+      \fi
+    \end{scope}
+  \end{tikzpicture}%
+}
+
+\setbeamertemplate{title page}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \begin{scope}[shift={(current page.north west)},x=\paperwidth,y=-\paperheight,
+      every node/.style={inner sep=0pt,outer sep=0pt}]
+      \node[anchor=west,text=SYSUGreen,text width=0.85\paperwidth,align=left,
+        font=\SYSU@headingfont\bfseries\fontsize{18.2}{23}\selectfont]
+        at (0.112,0.377) {\inserttitle};
+      \node[anchor=west,text width=0.78\paperwidth,align=left,
+        font=\SYSU@headingfont\fontsize{12.1}{17}\selectfont]
+        at (0.135,0.522) {\insertinstitute};
+      \foreach \SYSU@label/\SYSU@y in {Name/0.715,Advisor/0.798,Date/0.889}{%
+        \node[anchor=east,text=SYSUGray,font=\rmfamily\fontsize{12.1}{14}\selectfont]
+          at (0.680,\SYSU@y) {\SYSU@label};
+        \draw[SYSUGray,line width=0.2pt] (0.698,\SYSU@y+0.031) -- (0.926,\SYSU@y+0.031);
+      }
+      \node[font=\SYSU@headingfont\bfseries\fontsize{12.1}{14}\selectfont]
+        at (0.812,0.715) {\insertauthor};
+      \node[font=\SYSU@headingfont\bfseries\fontsize{12.1}{14}\selectfont]
+        at (0.812,0.798) {\SYSU@advisor};
+      \node[font=\SYSU@headingfont\fontsize{11.5}{14}\selectfont]
+        at (0.812,0.889) {\insertdate};
+    \end{scope}
+  \end{tikzpicture}%
+}
+
+\newcommand{\SYSUtitleframe}{%
+  \begingroup
+    \SYSU@specialtrue\SYSU@endingfalse
+    \begin{frame}[plain]\titlepage\end{frame}
+  \endgroup
+}
+\newcommand{\SYSUoutlineframe}{%
+  \begingroup
+    \SYSU@outlinetrue
+    \hypersetup{linkcolor=SYSUGray}
+    \begin{frame}[t]
+      \vspace*{9mm}
+      \hspace*{5mm}\begin{minipage}{0.68\textwidth}
+        {\SYSU@headingfont\color{SYSUGreen}\fontsize{16.2}{20}\selectfont 大纲\par}
+        \vspace{3mm}{\color{SYSUGreen}\hrule height 0.25pt}\vspace{3mm}
+        \tableofcontents[hideallsubsections]
+        \vspace{2mm}{\color{SYSUGreen}\hrule height 0.25pt}
+      \end{minipage}
+    \end{frame}
+  \endgroup
+}
+\newcommand{\SYSUthanksframe}{%
+  \begingroup
+    \SYSU@specialtrue\SYSU@endingtrue
+    \begin{frame}[plain]
+      \begin{tikzpicture}[remember picture,overlay]
+        \begin{scope}[shift={(current page.north west)},x=\paperwidth,y=-\paperheight,
+          every node/.style={anchor=west,inner sep=0pt,outer sep=0pt}]
+          \node[text=SYSUGreen,font=\SYSU@headingfont\fontsize{40.4}{46}\selectfont]
+            at (0.170,0.385) {谢谢！};
+          \node[font=\SYSU@headingfont\fontsize{16.2}{20}\selectfont]
+            at (0.183,0.552) {\SYSU@closing};
+          \node[font=\rmfamily\fontsize{16.2}{20}\selectfont]
+            at (0.183,0.675) {\href{mailto:\SYSU@email}{\color{black}\SYSU@email}};
+        \end{scope}
+      \end{tikzpicture}
+    \end{frame}
+  \endgroup
+}
+
+\newcommand{\SYSUheading}[1]{%
+  {\SYSU@headingfont\bfseries\color{SYSUGreen}#1\par}\vspace{1.5mm}}
+\newcommand{\SYSUcaption}[1]{%
+  \par\vspace{1mm}{\centering\fontsize{9.5}{13}\selectfont #1\par}}
+\newcommand{\SYSUfigureplaceholder}[2][31mm]{%
+  \begin{tikzpicture}
+    \path[use as bounding box] (0,0) rectangle (\linewidth,#1);
+    \draw[SYSURule,line width=0.4pt] (0,0) rectangle (\linewidth,#1);
+    \node[text=SYSUGray,font=\SYSU@headingfont] at (0.5\linewidth,0.5*#1) {#2};
+  \end{tikzpicture}%
+}
+
+\endinput

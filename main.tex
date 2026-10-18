@@ -1,0 +1,85 @@
+% !TeX program = xelatex
+\documentclass[aspectratio=43,11pt,t]{beamer}
+\usetheme{SYSU}
+\usepackage{booktabs}
+
+% 报告信息只在这里修改。
+\title{学术报告题目}
+\author{报告人姓名}
+\institute{中山大学\quad 海洋工程与技术学院}
+\date{\today}
+\SYSUsetup{
+  advisor={指导教师姓名},
+  email={name@example.edu.cn},
+  closing={请各位老师、同学批评指正！}
+}
+
+\begin{document}
+
+\SYSUtitleframe
+\SYSUoutlineframe
+
+\section{研究背景}
+\begin{frame}{Introduction}
+  \begin{itemize}
+    \item 研究问题与应用背景
+      \begin{itemize}
+        \item 说明研究对象、场景与基本假设
+      \end{itemize}
+    \item 现有方法与主要不足
+    % 取消下一行的注释，即可按页逐步展示第三项。
+    % \pause
+    \item 本研究的目标与主要贡献
+  \end{itemize}
+\end{frame}
+
+\section{研究方法}
+\begin{frame}{Method}
+  \SYSUheading{模型与符号}
+  \[
+    p(r,f)=\sum_{n=1}^{N} A_n(r,f)\,
+      \exp\!\bigl(\mathrm{i}\,\phi_n(r,f)\bigr)
+  \]
+  \vspace{1mm}
+  \begin{center}
+    \begin{tabular}{lll}
+      \toprule
+      物理量 & 符号 & 单位 \\
+      \midrule
+      距离 & \(r\) & \(\mathrm{m}\) \\
+      频率 & \(f\) & \(\mathrm{Hz}\) \\
+      相位 & \(\phi_n\) & \(\mathrm{rad}\) \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{frame}
+
+\section{结果分析}
+\begin{frame}{Analysis}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \SYSUfigureplaceholder{结果图 A}
+      \SYSUcaption{图 A：研究对象或基准结果}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \SYSUfigureplaceholder{结果图 B}
+      \SYSUcaption{图 B：对比结果或误差分布}
+    \end{column}
+  \end{columns}
+  \vspace{4mm}
+  \SYSUheading{结果说明}
+  说明图中变量、比较条件和主要发现。
+\end{frame}
+
+\section{总结展望}
+\begin{frame}{Conclusion}
+  \begin{enumerate}
+    \item 主要结论
+    \item 适用条件与当前局限
+    \item 后续研究工作
+  \end{enumerate}
+\end{frame}
+
+\SYSUthanksframe
+
+\end{document}
