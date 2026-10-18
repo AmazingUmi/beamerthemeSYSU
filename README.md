@@ -4,8 +4,8 @@
 不依赖原始 PPT 或其他项目目录。
 
 ```bash
-git clone https://github.com/AmazingUmi/latex-template.git
-cd latex-template
+git clone https://github.com/AmazingUmi/beamerthemeSYSU.git
+cd beamerthemeSYSU
 make
 ```
 
