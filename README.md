@@ -6,7 +6,7 @@
 
 ## 使用
 
-安装 TeX Live 或 MacTeX，包含 XeLaTeX、latexmk、beamer、ctex、fontspec、tikz、booktabs，以及 Fandol、TeX Gyre 字体。
+安装 TeX Live 或 MacTeX，包含 XeLaTeX、latexmk、beamer、ctex、fontspec、unicode-math、tikz、booktabs，以及 Fandol、TeX Gyre 字体。
 
 | 操作 | 命令 |
 | --- | --- |
@@ -39,4 +39,4 @@
 | 逐步展示 | 在正文中加入 `\pause` |
 | 合并展示步骤 | 文档类选项加入 `handout` |
 
-支持 PDF、PNG、JPEG 图片；中文使用 Fandol 字体，西文使用 TeX Gyre Termes。
+支持 PDF、PNG、JPEG 图片；中文使用 Fandol 字体，西文使用 TeX Gyre Termes，数学使用配套的 TeX Gyre Termes Math。
