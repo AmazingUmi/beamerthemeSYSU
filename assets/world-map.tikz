@@ -1,4 +1,4 @@
-% Extracted from ppt/slideLayouts/slideLayout1.xml, Group 433.
+% Vector world map in normalized slide coordinates.
 % Native paths in normalized slide coordinates; edit SYSUMap for color.
 \path[fill=SYSUMap,draw=none]
   (0.41108422,0.14603150)

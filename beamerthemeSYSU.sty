@@ -27,7 +27,7 @@
 \setCJKfamilyfont{sysukai}{FandolKai-Regular.otf}[AutoFakeBold=2]
 \newcommand{\SYSU@headingfont}{\rmfamily\CJKfamily{sysukai}}
 
-% Direct colors in the PPT layouts, rather than the unused Office theme.
+% Theme colors.
 \definecolor{SYSUGreen}{HTML}{005825}
 \definecolor{SYSUAccent}{HTML}{008E3D}
 \definecolor{SYSUMap}{HTML}{F2F2F2}
@@ -75,7 +75,7 @@
 \newif\ifSYSU@ending
 \newif\ifSYSU@outline
 
-% All coordinates below are fractions of the original 4:3 slide canvas.
+% Coordinates below are fractions of the 4:3 slide canvas.
 \newcommand{\SYSU@mapbackground}{%
   \input{assets/world-map.tikz}%
   \fill[SYSUGreen] (0.00328,0.29974) rectangle (0.09360,0.44664);
